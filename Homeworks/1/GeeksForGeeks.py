@@ -72,7 +72,7 @@ def pick_word(counter):
 	"Chooses a random element."
 	return random.choice(list(counter.elements())) 
 prefix = "he", "said"
-print(" ".join(prefix)) 
+print(" ".join(prefix)) asdasdasd
 s = " ".join(prefix) 
 for i in range(19): 
 	suffix = pick_word(d[prefix]) 
