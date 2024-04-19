@@ -59,29 +59,26 @@ def collect_probabilities(_samples):
 
         # Collect data for initial probabilities (pi)
         if has_next:
-            # if _samples[i + 1][1] not in pi:
-            if _samples[i][1] not in pi:
-                # pi.update({_samples[i + 1][1]: 2})
-                pi.update({_samples[i][1]: 2})
+            if _samples[i + 1][1] not in pi:
+            # if _samples[i][1] not in pi:
+                pi.update({_samples[i + 1][1]: 2})
+                # pi.update({_samples[i][1]: 2})
             else:
                 # Your code here
-                # pi[_samples[i + 1][1]] += 1
-                pi[_samples[i][1]] += 1
+                pi[_samples[i + 1][1]] += 1
+                # pi[_samples[i][1]] += 1
 
         # Count tag frequencies (tag_freq) and word frequencies under each tag (word_per_tag_freq)
-        sample0 = sample[0]
-        sample1 = sample[1]
         if sample[1] not in tag_freq:
-            tag_freq.update({sample1: 2})
-            word_per_tag_freq.update({sample1: {sample0: 2}})
+            tag_freq.update({sample[1]: 2})
+            word_per_tag_freq.update({sample[1]: {sample[0]: 2}})
         else:
           # Your code here
-          if sample0 not in word_per_tag_freq[sample1]:
-              word_per_tag_freq[sample1].update({sample0: 2})
-          # else:
-              # word_per_tag_freq[sample1][sample0] += 1
-          word_per_tag_freq[sample1][sample0] += 1
-          tag_freq[sample1] += 1
+          tag_freq[sample[1]] += 1
+          if sample[0] not in word_per_tag_freq[sample[1]]:
+              word_per_tag_freq[sample[1]].update({sample[0]: 1})
+          else:
+              word_per_tag_freq[sample[1]][sample[0]] += 1
 
 
     # Initialize the bigram matrix with default counts
@@ -147,12 +144,12 @@ def create_confusion_matrix(predictions, hidden_state, confusion_matrices , is_c
                 # Your code here
                 if j == predictions[i]:
                     confusion_matrices[j]['FP'] += 1
-                elif j == hidden_state[i]:
-                    confusion_matrices[j]['FN'] += 1
-                else:
-                    confusion_matrices[j]['TN'] += 1
-                # if j == hidden_state[i]:
+                # elif j == hidden_state[i]:
                 #     confusion_matrices[j]['FN'] += 1
+                # else:
+                #     confusion_matrices[j]['TN'] += 1
+                if j == hidden_state[i]:
+                    confusion_matrices[j]['FN'] += 1
 
 
     # rank
@@ -219,8 +216,8 @@ def viterbi(_samples, _tag_freq, _word_per_tag_freq, _bigram, _init_dist):
             # hidden_state.append(''' Your code here ''')
             sentence.append(_samples[current_index][0])
             hidden_state.append(_samples[current_index][1])
-            last_token = sentence[-1]
-            # last_token = _samples[current_index][0]
+            # last_token = sentence[-1]
+            last_token = _samples[current_index][0]
             current_index += 1
 
         # initialization step
