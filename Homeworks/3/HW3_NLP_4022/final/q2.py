@@ -59,26 +59,29 @@ def collect_probabilities(_samples):
 
         # Collect data for initial probabilities (pi)
         if has_next:
-            if _samples[i + 1][1] not in pi:
-            # if _samples[i][1] not in pi:
-                pi.update({_samples[i + 1][1]: 2})
-                # pi.update({_samples[i][1]: 2})
+            # if _samples[i + 1][1] not in pi:
+            if _samples[i][1] not in pi:
+                # pi.update({_samples[i + 1][1]: 2})
+                pi.update({_samples[i][1]: 2})
             else:
                 # Your code here
-                pi[_samples[i + 1][1]] += 1
-                # pi[_samples[i][1]] += 1
+                # pi[_samples[i + 1][1]] += 1
+                pi[_samples[i][1]] += 1
 
         # Count tag frequencies (tag_freq) and word frequencies under each tag (word_per_tag_freq)
+        sample0 = sample[0]
+        sample1 = sample[1]
         if sample[1] not in tag_freq:
-            tag_freq.update({sample[1]: 2})
-            word_per_tag_freq.update({sample[1]: {sample[0]: 2}})
+            tag_freq.update({sample1: 2})
+            word_per_tag_freq.update({sample1: {sample0: 2}})
         else:
           # Your code here
-          tag_freq[sample[1]] += 1
-          if sample[0] not in word_per_tag_freq[sample[1]]:
-              word_per_tag_freq[sample[1]].update({sample[0]: 1})
-          else:
-              word_per_tag_freq[sample[1]][sample[0]] += 1
+          if sample0 not in word_per_tag_freq[sample1]:
+              word_per_tag_freq[sample1].update({sample0: 2})
+          # else:
+              # word_per_tag_freq[sample1][sample0] += 1
+          word_per_tag_freq[sample1][sample0] += 1
+          tag_freq[sample1] += 1
 
 
     # Initialize the bigram matrix with default counts
@@ -88,9 +91,9 @@ def collect_probabilities(_samples):
             bigram[tag_0].update({tag_1: 1})
 
     # Count bigram occurrences
-    for i in range(samples_len):
+    for i in range(samples_len - 1):
       # Your code here
-      if i + 1 < samples_len:
+      # if i + 1 < samples_len:
             tag_0 = _samples[i][1]
             tag_1 = _samples[i + 1][1]
             bigram[tag_0][tag_1] += 1
@@ -144,12 +147,12 @@ def create_confusion_matrix(predictions, hidden_state, confusion_matrices , is_c
                 # Your code here
                 if j == predictions[i]:
                     confusion_matrices[j]['FP'] += 1
-                # elif j == hidden_state[i]:
-                #     confusion_matrices[j]['FN'] += 1
-                # else:
-                #     confusion_matrices[j]['TN'] += 1
-                if j == hidden_state[i]:
+                elif j == hidden_state[i]:
                     confusion_matrices[j]['FN'] += 1
+                else:
+                    confusion_matrices[j]['TN'] += 1
+                # if j == hidden_state[i]:
+                #     confusion_matrices[j]['FN'] += 1
 
 
     # rank
@@ -164,11 +167,17 @@ def create_confusion_matrix(predictions, hidden_state, confusion_matrices , is_c
 
         if confusion_matrices[tag]['FP'] > highest_FP:
             highest_FP = confusion_matrices[tag]['FP']
-            highest_FP_tag = tag
+            # highest_FP_tag = tag
+            highest_FP_tag = [tag]
+        elif confusion_matrices[tag]['FP'] == highest_FP:
+            highest_FP_tag.append(tag)
 
         if confusion_matrices[tag]['FN'] > highest_FN:
             highest_FN = confusion_matrices[tag]['FN']
-            highest_FN_tag = tag
+            # highest_FN_tag = tag
+            highest_FN_tag = [tag]
+        elif confusion_matrices[tag]['FN'] == highest_FN:
+            highest_FN_tag.append(tag)
 
     print(f'\nTag with the most false positives is: {highest_FP_tag} with {highest_FP} counts.')
     print(f'Tag with the most false negative is:  {highest_FN_tag} with {highest_FN} counts.')
@@ -201,6 +210,8 @@ def viterbi(_samples, _tag_freq, _word_per_tag_freq, _bigram, _init_dist):
     current_index = 0
     is_correct = 0
 
+    init_dist_sum = sum(_init_dist.values())
+
     # populate the confusion matrix
     confusion_matrices = {}
     for tag in _tag_freq:
@@ -216,36 +227,41 @@ def viterbi(_samples, _tag_freq, _word_per_tag_freq, _bigram, _init_dist):
             # hidden_state.append(''' Your code here ''')
             sentence.append(_samples[current_index][0])
             hidden_state.append(_samples[current_index][1])
-            # last_token = sentence[-1]
-            last_token = _samples[current_index][0]
+            last_token = sentence[-1]
+            # last_token = _samples[current_index][0]
             current_index += 1
 
         # initialization step
         path_probability = {}
         backpointer = {}
-        for tag in init_dist:
+        for tag in _init_dist:
             path_probability.update({tag: []})
             backpointer.update({tag: [0]})
 
             # initial distribution of this tag
-            pi_tag = init_dist[tag]
+            # pi_tag = init_dist[tag]
+            pi_tag = _init_dist[tag]/init_dist_sum
 
             # b_word is the probability of the word being generated by this tag
             if sentence[0] in _word_per_tag_freq[tag]:
-                b_word = _word_per_tag_freq[tag][sentence[0]] / _tag_freq[tag] # Your code here
+                # b_word = _word_per_tag_freq[tag][sentence[0]] / _tag_freq[tag] # Your code here
+                observation_prob = _word_per_tag_freq[tag][sentence[0]]/sum(_word_per_tag_freq[tag].values())
+                b_word = pi_tag * observation_prob
             else:
                 b_word = 2.2250738585072014e-100
             # path_probability[tag].append(''' Your code here ''')
-            path_probability[tag].append(math.log(pi_tag * b_word, 10))
+            # path_probability[tag].append(math.log(pi_tag * b_word, 10))
             # path_probability[tag].append(math.log(pi_tag, 10) + math.log(b_word, 10))
+            path_probability[tag].append(b_word)
 
         # recursion step
         T = len(sentence)
         for i in range(1, T):
-            for tag in init_dist:
+            for tag in _init_dist:
 
                 if sentence[i] in _word_per_tag_freq[tag]:
-                    b_word = _word_per_tag_freq[tag][sentence[i]] / _tag_freq[tag] # Your code here
+                    # b_word = _word_per_tag_freq[tag][sentence[i]] / _tag_freq[tag] # Your code here
+                    b_word =  _word_per_tag_freq[tag][sentence[i]]/sum(_word_per_tag_freq[tag].values())
                 else:
                     b_word = 2.2250738585072014e-100
 
@@ -253,7 +269,7 @@ def viterbi(_samples, _tag_freq, _word_per_tag_freq, _bigram, _init_dist):
                 # viterbi[s', t-1] * a(s|s') *b_s(o_t)
                 best_trans_prob = -2.2250738585072014e+308
                 best_trans_tag = ''
-                for prev_tag in init_dist:
+                for prev_tag in _init_dist:
                     if prev_tag in _bigram and tag in _bigram[prev_tag]:
                         transitional_prob = _bigram[prev_tag][tag] # Your code here
                     else:
@@ -271,10 +287,10 @@ def viterbi(_samples, _tag_freq, _word_per_tag_freq, _bigram, _init_dist):
         # termination step
         best_path_prob = -2.2250738585072014e+308
         best_path_pointer = None
-        for tag in init_dist:
+        for tag in _init_dist:
             # Your code here
             if path_probability[tag][-1] > best_path_prob:
-                best_path_prob = path_probability[tag][-1]
+                # best_path_prob = path_probability[tag][-1]
                 best_path_pointer = tag
 
         predictions = [best_path_pointer]
@@ -282,7 +298,9 @@ def viterbi(_samples, _tag_freq, _word_per_tag_freq, _bigram, _init_dist):
         # make the predictions path
         for i in reversed(range(1, T)):
             # Your code here
-            predictions.insert(0, backpointer[predictions[0]][i])
+            # predictions.insert(0, backpointer[predictions[0]][i])
+            best_path_pointer = backpointer[best_path_pointer][i]
+            predictions.append(best_path_pointer)
         predictions.reverse()
 
         print(f'sentence:       {sentence}')
