@@ -1,0 +1,82 @@
+[
+    {
+        "Query":"I have a sore throat and cough. Could it be a cold or the flu?",
+        "relevant_document":"Influenza, or the flu, is a contagious infection of the nose, throat, and lungs caused by the influenza virus."
+    },
+    {
+        "Query":"What are the symptoms of a migraine headache?",
+        "relevant_document":"Guanfacine also is used in the treatment of migraine headaches and drug withdrawal symptoms. Talk to your doctor about the possible risks of using this drug for your condition."
+    },
+    {
+        "Query":"I woke up with a rash on my arm. What could it be?",
+        "relevant_document":"Fever Jaundice Nausea Rash or itchy red hives on skin Vomiting Decreased appetite Flu -like symptoms Joint pain Sore muscles"
+    },
+    {
+        "Query":"What over-the-counter medications can I take for a fever?",
+        "relevant_document":"Brain damage caused by increased body temperature Seizures caused by high fever (febrile seizures)"
+    },
+    {
+        "Query":"What are the risk factors for high blood pressure?",
+        "relevant_document":"For most individuals, a healthy blood pressure lies from 90/50 mmHg to 135/90 mmHg. A small drop in blood pressure, even as little as 20 mmHg, can result in transient hypotension.\nEvaluating neurocardiogenic syncope is done with a tilt table test.\nIrregular heartbeat may be present."
+    },
+    {
+        "Query":"I'm feeling dizzy and lightheaded. What could be causing this?",
+        "relevant_document":"Life-threatening causes include conditions that may result in death or permanent disability within 24 hours if left untreated.\nBrainstem stroke Cyanide poisoning Drug overdose Malignant hypertension\nBenign paroxysmal positional vertigo Cerebellar stroke Meniere's disease Vertebrobasilar transient ischemic attack Vestibular migraine Vestibular neuritis"
+    },
+    {
+        "Query":"Is it safe to exercise with a sprained ankle?",
+        "relevant_document":"Your health care provider can diagnose Athlete's foot simply by looking at your skin. If tests are needed, they may include:\nSkin culture Skin lesion biopsy Skin lesion KOH exam"
+    },
+    {
+        "Query":"What are some home remedies for a sunburn?",
+        "relevant_document":"A sunburn is reddening of the skin that occurs after you are exposed to the sun or other ultraviolet light."
+    },
+    {
+        "Query":"I'm concerned about my cholesterol levels. What should I do?",
+        "relevant_document":"This medication is used along with a diet and an exercise program to treat high cholesterol levels."
+    },
+    {
+        "Query":"How can I prevent the spread of the common cold?",
+        "relevant_document":"In the 18th century, Benjamin Franklin considered the causes and prevention of the common cold. After several years of research, he concluded that \"People often catch a cold from one another when shut up together in small close rooms, or coaches; and when sitting near and conversing, so as to breathe in each other's transpiration.\" Although viruses had not yet been discovered, Franklin hypothesized that the common cold was passed between people through the air. He recommended exercise, bathing, and moderation in food and drink consumption to avoid the common cold.  Franklin's theory on the transmission of the cold was confirmed about 150 years later. \nIn the United Kingdom, the Common Cold Unit (CCU) was set up by the civilian Medical Research Council in 1946. The unit worked with volunteers who were infected with various viruses. \nThe rhinovirus was discovered in the CCU in the 1950s; scientists were able to culture the virus on a tissue culture. In the 1970s, the CCU proved that using interferon during the incubation period could be potentially protective against developing the infection. In 1987, the unit completed its research on zinc gluconate lozenges for prophylaxis against rhinovirus.  In 1989, the unit was closed."
+    },
+    {
+        "Query":"What are the benefits of getting enough sleep?",
+        "relevant_document":"Tests vary and depend on the specific sleep disorder. A sleep study (polysomnography) may be done."
+    },
+    {
+        "Query":"What are some tips for a healthy diet?",
+        "relevant_document":"Extreme weight loss Stunted growth Body mass index less than 17.5 in adults, or 85% of expected weight in children\nHypothermia\nBradycardia\nHypotension\nGrowth of lanugo hair over the body Dry skin Possibly with pallid complexion\nSunken eyes\nCreaking joints and bones Collection of fluid in ankles during the day and around eyes during the night Nails become more brittle Tooth decay Very dry/chapped lips due to malnutrition\nExcessive exercise, food restriction Fainting Secretive about eating or exercise behavior Possible self-harm, substance abuse or suicide attempts Very sensitive to references about body weight Become very aggressive when forced to eat \"forbidden\" foods"
+    },
+    {
+        "Query":"I have a family history of diabetes. How can I reduce my risk?",
+        "relevant_document":"There are no other diagnostic studies associated with diabetic ketoacidosis (DKA)."
+    },
+    {
+        "Query":"What vaccinations are recommended for adults?",
+        "relevant_document":"Unvaccinated or incompletely vaccinated infants younger than 12 months of age have the highest risk for severe and life-threatening complications and death.  Treatment with an effective antimicrobial agent the infectious period but does not generally alter the outcome of the disease. When treatment is initiated during the catarrhal stage, symptoms may be less severe. Among adolescents and adults, pertussis is generally less severe, and the characteristic whooping cough is less frequently described."
+    },
+    {
+        "Query":"What are the symptoms of a urinary tract infection (UTI)?",
+        "relevant_document":"Recurrent urinary infections"
+    },
+    {
+        "Query":"How can I tell the difference between a bee sting and a spider bite?",
+        "relevant_document":"Insect sting allergy is the term commonly given to the allergic response of an animal in response to the bite or sting of an insect. Typically, insects which generate allergic responses are either stinging insects (wasps, bees, hornets and ants) or biting insects (mosquitoes, ticks). Stinging insects inject venom into their victims, whilst biting insects normally introduce anti-coagulants into their victims.\nThe great majority of insect allergic animals just have a simple allergic response - a reaction local to the sting site which appears as just a swelling arising from the release of histamine and other chemicals from the body tissues near to the sting site. The swelling, if allergic, can be helped by the provision of an anti-histamine ointment as well as an ice pack. This is the typical response for all biting insects and many people have this common reaction to one extreme or another.\nMosquito allergy may result in a collection of symptoms called Skeeter Syndrome that occur after a bite. This syndrome may be mistaken for an infection such as cellulitis.\nIn anaphylactic patients the response is more aggressive leading to a systemic reaction where the response progresses from the sting site around the whole body. This is potentially something very serious and can lead to anaphylaxis which is potentially life threatening. citation needed\nVenom Immunotherapy is a course of treatment which is now well established in North America and Europe citation needed and offers patients with a systemic allergic response a considerable reduction in the level of their allergic response. citation needed"
+    },
+    {
+        "Query":"What are the side effects of taking antibiotics?",
+        "relevant_document":"Inadvertently use of antibiotic for patients without community-acquired pneumonia who require treatment within 4 hours may increase the risk of Clostridium difficile colitis.  Hence, use antibiotics judiciously."
+    },
+    {
+        "Query":"When should I see a doctor for a stomach ache?",
+        "relevant_document":"There is insufficient evidence to recommend routine screening for gastritis."
+    },
+    {
+        "Query":"Is it safe to take medication during pregnancy?",
+        "relevant_document":"The medication has a Food and Drug Administration (FDA) Pregnancy Category C. It is given by intramuscular injection as part of modern antenatal care and within 72 hours after childbirth."
+    },
+    {
+        "Query":"What are some relaxation techniques for managing stress?",
+        "relevant_document":"Generalized anxiety disorder falls under the category of anxiety disorder."
+    }
+]
