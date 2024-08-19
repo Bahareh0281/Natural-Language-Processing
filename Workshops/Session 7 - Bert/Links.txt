@@ -1,3 +1,0 @@
-https://github.com/huggingface/transformers/tree/main/examples/pytorch/text-classification
-
-https://colab.research.google.com/github/hooshvare/parsbert/blob/master/notebooks/Taaghche_Sentiment_Analysis.ipynb
